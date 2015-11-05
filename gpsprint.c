@@ -13,7 +13,6 @@
     } 
     // print out information of visible satellites
     if (data_ptr->satellites_visible != 0) {
-        fprintf(stdout, "Found a satellite!\n");
         for (i = 0; i < MAX_POSSIBLE_SATS; i++) {
             if (i < data_ptr->satellites_visible) {
                 fprintf(stdout, "PRN:%3d\tElevation:%02d\tAzimuth:%03d\tSNR:%02d\tUsed:%c\n",
@@ -25,16 +24,18 @@
             }
         }
         if (data_ptr->fix.mode >= MODE_2D && isnan(data_ptr->fix.latitude) == 0) {
-            fprintf(stdout, "Latitude: %s%c", deg_to_str(deg_dd, fabs(data_ptr->fix.latitude)), (data_ptr->fix.latitude < 0) ? 'S' : 'N');
+            fprintf(stdout, "Latitude: %s%c\n", deg_to_str(deg_ddmmss, fabs(data_ptr->fix.latitude)), (data_ptr->fix.latitude < 0) ? 'S' : 'N');
             fflush(stdout);
         } else {
             fprintf(stdout, "n/a\n");
         }
         if (data_ptr->fix.mode >= MODE_2D && isnan(data_ptr->fix.longitude) == 0) {
-            fprintf(stdout, "longitude: %s%c", deg_to_str(deg_dd, fabs(data_ptr->fix.longitude)), (data_ptr->fix.longitude < 0) ? 'W' : 'E');
+            fprintf(stdout, "longitude: %s%c\n", deg_to_str(deg_ddmmss, fabs(data_ptr->fix.longitude)), (data_ptr->fix.longitude < 0) ? 'W' : 'E');
         } else {
             fprintf(stdout, "n/a\n");
         }
-            fprintf(stdout, "No satellites :(\n");
-    }     
+    } else {
+        fprintf(stdout, "No satellites.\n");
+    }
+    fprintf(stdout, "----------------------------\n");
  }
