@@ -1,10 +1,4 @@
-#include <gps.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include "gps_structures.h"
-#include "gps-utils.h"
-
-#define LOCAL_HOST "127.0.0.1"
+#include "dcgps.h"
 
 static fixsource_t source;
 static gps_data_t *data_ptr;

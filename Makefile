@@ -8,9 +8,9 @@ dcgps: dcgps.o gps-utils.o gpsprint.o
 
 clean:
 	rm -f *.o core.* dcgps
-dcgps.o: dcgps.c
+dcgps.o: dcgps.c dcgps.h
 	$(CC) -c dcgps.c 
-gps-utils.o: gps-utils.h gps-utils.c
+gps-utils.o: gps-utils.c gps-utils.h 
 	$(CC) -c gps-utils.c
-gpsprint.o: gpsprint.h gpsprint.c
+gpsprint.o: gpsprint.c gpsprint.h 
 	$(CC) -c gpsprint.c

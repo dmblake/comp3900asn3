@@ -1,6 +1,5 @@
-#ifndef GPS_STRUCTURES_H
-#define GPS_STRUCTURES_H
-#include <gps.h>
+#ifndef DCGPS_H
+#define DCGPS_H
 
 typedef struct fixsource_t
 {
@@ -11,4 +10,8 @@ typedef struct fixsource_t
 } fixsource_t;
 
 typedef struct gps_data_t gps_data_t;
+#include <gps.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include "gps-utils.h"
 #endif

@@ -1,5 +1,4 @@
 #include "gps-utils.h"
-#include "gpsprint.h"
 
 
 void main_gps_loop(gps_data_t *data_ptr) {

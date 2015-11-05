@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include "gps_structures.h"
+#include "dcgps.h"
 
 #define MAXCHANNELS 72
 #define MAX_POSSIBLE_SATS (MAXCHANNELS-2)
