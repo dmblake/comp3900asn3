@@ -24,7 +24,17 @@
                         ( usedflags[i] ? 'Y' : 'N'));
             }
         }
-    } else {
-        fprintf(stdout, "No satellites :(\n");
+        if (data_ptr->fix.mode >= MODE_2D && isnan(data_ptr->fix.latitude) == 0) {
+            fprintf(stdout, "Latitude: %s%c", deg_to_str(deg_type, fabs(data_ptr->fix.latitude)), (data_ptr->fix.latitude < 0) ? 'S' : 'N');
+            fflush(stdout);
+        } else {
+            fprintf(stdout, "n/a\n");
+        }
+        if (data_ptr->fix.mode >= MODE_2D && isnan(data_ptr->fix.longitude) == 0) {
+            fprintf(stdout, "longitude: %s%c", deg_to_str(deg_type, fabs(data_ptr->fix.longitude)), (data_ptr->fix.longitude < 0) ? 'W' : 'E');
+        } else {
+            fprintf(stdout, "n/a\n");
+        }
+            fprintf(stdout, "No satellites :(\n");
     }     
  }
