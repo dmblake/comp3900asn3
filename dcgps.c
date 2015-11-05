@@ -1,6 +1,6 @@
 #include "dcgps.h"
 
-static fixsource_t source;
+static struct fixsource_t source;
 static gps_data_t *data_ptr;
 
 int main(int argc, char *argv[]) {
