@@ -24,13 +24,13 @@
             }
         }
         if (data_ptr->fix.mode >= MODE_2D && isnan(data_ptr->fix.latitude) == 0) {
-            fprintf(stdout, "Latitude: %s%c\n", deg_to_str(deg_ddmmss, fabs(data_ptr->fix.latitude)), (data_ptr->fix.latitude < 0) ? 'S' : 'N');
+            fprintf(stdout, "Latitude: %s%c\n", deg_to_str(fabs(data_ptr->fix.latitude)), (data_ptr->fix.latitude < 0) ? 'S' : 'N');
             fflush(stdout);
         } else {
             fprintf(stdout, "n/a\n");
         }
         if (data_ptr->fix.mode >= MODE_2D && isnan(data_ptr->fix.longitude) == 0) {
-            fprintf(stdout, "longitude: %s%c\n", deg_to_str(deg_ddmmss, fabs(data_ptr->fix.longitude)), (data_ptr->fix.longitude < 0) ? 'W' : 'E');
+            fprintf(stdout, "longitude: %s%c\n", deg_to_str(fabs(data_ptr->fix.longitude)), (data_ptr->fix.longitude < 0) ? 'W' : 'E');
         } else {
             fprintf(stdout, "n/a\n");
         }
@@ -39,3 +39,25 @@
     }
     fprintf(stdout, "----------------------------\n");
  }
+
+char *deg_to_str(double f) {
+    static char str[40];
+    int sec, deg, min;
+    double fsec, fdeg, fmin;
+
+    if (f < 0 || f > 360) {
+        strlcpy(str, "nan", sizeof(str));
+        return str;
+    }
+
+    fmin = modf(f, &fdeg);
+    deg = (int)fdeg;
+
+    fsec = modf(fmin * 60, &fmin);
+    min = (int)fmin;
+    sec = (int) (fsec * 10000.0);
+    sec = (int) fsec;
+    snprintf(str, sizeof(str), "%3d %02d' %02d\"", deg, min, sec);
+
+    return str;
+}
