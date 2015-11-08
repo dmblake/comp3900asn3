@@ -83,7 +83,6 @@ char *deg_to_str(double f) {
     fsec = modf(fmin * 60, &fmin);
     min = (int)fmin;
     sec = (int) (fsec * 10000.0);
-    sec = (int) fsec;
     snprintf(str, sizeof(str), "%3d %02d' %02d\"", deg, min, sec);
 
     return str;
