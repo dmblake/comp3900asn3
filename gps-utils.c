@@ -15,7 +15,7 @@ void main_gps_loop(gps_data_t *data_ptr) {
     wclear(locdata);
     wrefresh(locdata);
     WINDOW* satwin = create_newwin(18, 35, 1, 41);
-    mvwprintw(satwin, 1, 1, "PRN:  Elev:  Azim:  SNR:  Used:");
+    mvwprintw(satwin, 1, 1, "PRN:\tElev:\tAzim:\tSNR: Used:");
     wrefresh(satwin);
     WINDOW* satdata = create_newwin(15, 33, 3, 42);
     wclear(satdata);
