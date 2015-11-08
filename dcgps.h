@@ -1,8 +1,7 @@
 #ifndef DCGPS_H
 #define DCGPS_H
 
-typedef struct fixsource_t
-{
+typedef struct fixsource_t {
     char *spec;
     char *server;
     char *port;
