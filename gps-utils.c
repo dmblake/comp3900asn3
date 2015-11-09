@@ -18,12 +18,13 @@ void main_gps_loop(gps_data_t *data_ptr) {
         if (!(errno = gps_waiting(data_ptr, 5000000))) {
             endwin();
             fprintf(stdout, "Timeout on GPS\n");
-            fprintf(stdout, "%s\n", gps_errstr(errno));
             return;
         }
         if ((errno = gps_read(data_ptr)) == -1) {
+            endwin();
             fprintf(stderr, "Error reading the GPS.\n");
             fprintf(stdout, "%s\n", gps_errstr(errno));
+            return;
         } else {
             print_gps_data(data_ptr, locdata, satdata); 
         }
