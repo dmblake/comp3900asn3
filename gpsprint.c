@@ -1,5 +1,31 @@
+/*
+ * SOURCE FILE: gpsprint.c
+ * PROGRAM: DCGPS
+ * FUNCTIONS:  void print_gps_data(gps_data_t *data_ptr, WINDOW* locdata, WINDOW* satdata)
+                char *deg_to_str(double f) 
+ * DATE: Nov 2, 2015
+ * REVISIONS: v2
+ * DESIGNER: Dylan & Allen
+ * PROGRAMMER: Dylan & Allen
+ *
+ * NOTES: Allocates resources for the GPS device and information data structure.
+ */
 #include "gpsprint.h"
 
+/*
+ * FUNCTION: print_gps_data
+ * DATE: Nov 2, 2015
+ * REVISION: v2
+ * DESIGNER: Dylan & Allen
+ * PROGRAMMER: Dylan (reading from the data structure) & Allen (filling the curses windows with data)
+ * INTERFACE: void print_gps_data(gps_data_t *data_ptr, WINDOW* locdata, WINDOW* satdata)
+ *              gps_data_t *data_ptr : structure that holds data
+ *              WINDOW* locdata : curses window to hold location data
+ *              WINDOW* satdata : curses window to hold satellite data
+ * RETURNS: void
+ *
+ * NOTES: Reads from the provided data structure and prints the information to the screen.
+ */
 void print_gps_data(gps_data_t *data_ptr, WINDOW* locdata, WINDOW* satdata) {
     int i, j;
     bool usedflags[MAXCHANNELS];
@@ -67,6 +93,18 @@ void print_gps_data(gps_data_t *data_ptr, WINDOW* locdata, WINDOW* satdata) {
 }
  
 
+/*
+ * FUNCTION: deg_to_str
+ * DATE: Nov 5, 2015
+ * REVISION: v1
+ * DESIGNER: Dylan
+ * PROGRAMMER: Dylan
+ * INTERFACE: char *deg_to_str(double f)
+ *              double f : value to convert to string format
+ * RETURNS: a string formatted version of the value
+ *
+ * NOTES: Takes a double from the gps_data_t structure and converts it to a human readable degree minute' second" format
+ */
 char *deg_to_str(double f) {
     static char str[40];
     int sec, deg, min;
