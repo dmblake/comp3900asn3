@@ -2,11 +2,15 @@
 
 void main_gps_loop(gps_data_t *data_ptr) {
     int errno;
+    // init windows
     initscr();
     cbreak();
-    refresh();
+    noecho();
+    timeout(10);
+    refresh(); 
     WINDOW* mainwin = create_newwin(20, 77, 0, 0);
     mvwprintw(mainwin, 0, 2, "DCGPS");
+    mvwprintw(mainwin, 19, 60, "Press q to exit");
     wrefresh(mainwin);
     WINDOW* locwin = create_newwin(18, 40, 1, 1);
     WINDOW* locdata = create_newwin(16, 26, 2, 13);
@@ -25,6 +29,9 @@ void main_gps_loop(gps_data_t *data_ptr) {
             fprintf(stderr, "Error reading the GPS.\n");
             fprintf(stdout, "%s\n", gps_errstr(errno));
             return;
+        } else if(getch() == 'q') {
+            endwin();
+            return; 
         } else {
             print_gps_data(data_ptr, locdata, satdata); 
         }
